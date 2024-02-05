@@ -43,5 +43,6 @@ const start = async () => {
     console.log(err);
   }
 };
+console.log("test");
 
 start();
