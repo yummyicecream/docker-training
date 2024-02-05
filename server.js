@@ -28,30 +28,10 @@ app.use(express.json());
 
 // Health check
 app.get("/ping", (req, res) => {
+  const html = "<h2>Hello</h2>";
   res
     .status(200)
-    .json({ message: "EC2 RDS 연결 후 docker container로 실행완료우" });
-});
-
-// Sign up
-app.post("/users/signup", async (req, res) => {
-  const { email, password } = req.body;
-
-  await myDataSource.manager.query(
-    `INSERT INTO users (
-      email, password
-    ) VALUES (?, ?)`,
-    [email, password]
-  );
-
-  res.status(201).json({ message: "created" });
-});
-
-// Get users
-app.get("/users", (req, res) => {
-  myDataSource.manager.query(`SELECT * FROM users`, (err, rows, fields) => {
-    res.status(200).json(rows);
-  });
+    .json({ html, message: "EC2 RDS 연결 후 docker container로 실행완료우" });
 });
 
 const start = async () => {
